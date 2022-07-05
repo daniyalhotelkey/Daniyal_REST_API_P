@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response;
 @Path("/empResource")
 public class empResource  {
     @GET
+    @Path("/connectionCheck")
     public String connectionCheck() throws Exception{
        /** --- Checking Connection ----- **/
         return "I am Connected";
@@ -15,7 +16,7 @@ public class empResource  {
 
     @GET
     @Path("/getData")
-    public Response getJSON() throws Exception{
+    public Response getData() throws Exception{
         JsonObject obj=new JsonObject();
 
         /**--- Sending HardCoded Data to the Server-----**/
@@ -30,7 +31,7 @@ public class empResource  {
 
     @POST
     @Path("/PostData")
-    public Response postJSON(String payload) throws Exception
+    public Response postData(String payload) throws Exception
     {
         /**---- Testing Payload -----**/
         System.out.println(payload);
@@ -40,7 +41,7 @@ public class empResource  {
 
         /**---- Checking if the data is Null or Misspelled  -----**/
         try{
-            if(emp.getF_name()==null || emp.getL_name()==null || emp.getEmpId()==null ||emp.getPassword()==null)
+            if(emp.getF_name()==null  || emp.getL_name()==null || emp.getEmpId()==null ||emp.getPassword()==null)
                 throw new Exception();
         }
         catch (Exception ex)
@@ -49,7 +50,7 @@ public class empResource  {
         }
 
         /** --- Sending the Response Back ----- **/
-        return Response.noContent().build();
+        return Response.status(200).entity("Data Inserted Successfully").build();
     }
 
     @PUT
