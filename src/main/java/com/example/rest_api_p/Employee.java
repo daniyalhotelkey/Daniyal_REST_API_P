@@ -5,7 +5,6 @@ public class Employee {
     String f_name;
     String l_name;
     int salary;
-
     String password;
 
     //---------- Getters ----------------
